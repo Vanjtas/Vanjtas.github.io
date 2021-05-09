@@ -11,7 +11,7 @@
 	<link rel="preconnect" href="//9qpuwspm.api.lncld.net">
 	<link rel="preconnect" href="//gravatar.loli.net">
 
-	<title>欢迎来到Jiao的博客 | Jiao的博客</title>
+	<title>搭建个人网站(2) | Jiao的博客</title>
 
 	<meta name="HandheldFriendly" content="True">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -39,14 +39,14 @@
 
 	<meta property="og:site_name" content="Jiao的博客">
 	<meta property="og:type" content="article">
-	<meta property="og:title" content="欢迎来到Jiao的博客 | Jiao的博客">
+	<meta property="og:title" content="搭建个人网站(2) | Jiao的博客">
 	<meta property="og:description" content="">
-	<meta property="og:url" content="http://example.com/2021/04/25/%E6%AC%A2%E8%BF%8E%E6%9D%A5%E5%88%B0Jiao%E7%9A%84%E5%8D%9A%E5%AE%A2/">
+	<meta property="og:url" content="http://example.com/2021/05/09/%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%992/">
 
 	
-	<meta property="article:published_time" content="2021-04-25T05:04:00+08:00"> 
+	<meta property="article:published_time" content="2021-05-09T08:05:00+08:00"> 
 	<meta property="article:author" content="Vanjtas">
-	<meta property="article:published_first" content="Jiao的博客, /2021/04/25/%E6%AC%A2%E8%BF%8E%E6%9D%A5%E5%88%B0Jiao%E7%9A%84%E5%8D%9A%E5%AE%A2/">
+	<meta property="article:published_first" content="Jiao的博客, /2021/05/09/%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%992/">
 	
 
 	
@@ -142,21 +142,33 @@
     <div class="inner">
         <header class="post-full-header">
             <div class="post-full-meta">
-                <time class="post-full-meta-date" datetime="2021-04-25T12:48:22.000Z">
-                    2021-04-25
+                <time class="post-full-meta-date" datetime="2021-05-09T15:33:15.000Z">
+                    2021-05-9
                 </time>
                 
                 <span class="date-divider">/</span>
                 
                 
             </div>
-            <h1 class="post-full-title">欢迎来到Jiao的博客</h1>
+            <h1 class="post-full-title">搭建个人网站(2)</h1>
         </header>
         <div class="post-full no-image">
             
             <div class="post-full-content">
                 <article id="photoswipe" class="markdown-body">
-                    <h2 id="2021年4月25日博客搭建成功"><a href="#2021年4月25日博客搭建成功" class="headerlink" title="2021年4月25日博客搭建成功"></a>2021年4月25日博客搭建成功</h2><p>  欢迎来到我的博客</p>
+                    <h2 id="更新日志"><a href="#更新日志" class="headerlink" title="更新日志"></a>更新日志</h2><p>20210510 更新到swap的安装，这次涉及了一些服务器调优的内容，不过就是冰山一角，果然运维也没那么好干。docker就等有空再看吧，近期应该是不看了。后面的计划是把网站基础网页做一做，然后把支付绑定弄一弄。还有今天在做的时候发现插件做全响应果然不是很智能，没法分开做，也要看看后面如何改善。</p>
+<h2 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h2><p>  想了下还是和上篇分开写吧。上次做到简单配置了服务器，这次就是弄下wordpress。原本是想docker + wordpress，结果docker果然还是正不太明白，弄了一天还是不懂，果断直接wordpress算了。项目跑起来为第一。<br>  所以这次主要就是写下装wordpress和之后遇到的问题。</p>
+<h2 id="wordpress安装和服务器调优"><a href="#wordpress安装和服务器调优" class="headerlink" title="wordpress安装和服务器调优"></a>wordpress安装和服务器调优</h2><p>  wordpress安装其实没什么可说的，直接下载解压用winSCP移到服务器根目录。之后打开域名照着装就行了。对了就装之前去新建个数据库。<br>  装完配置一下语言和时区，还有比较重要的固定连接，懒得研究了直接偷懒选了文章名。<br>  后面就装各种插件了，主要Elements和Elementor（真正全自动化…），其他靠主题内置的自动装好就行了了，WooCommerce什么的。<br>  全部装完就大功告成了，理论上可以开始做网页了，但是在做的过程中三番五次打不开服务器，各种崩溃找不到数据库加500错误。最后google了一天，途中top命令各种看也看不太明白…最后才明白是内存爆了。毕竟最低配的服务器情理之中吧。于是开始找解决办法，最后决定swap file走起。<br>  简单总结一下，linux swap就是内存快满了之后与磁盘交换文件以维持运行，速度虽然会下降但是不会和上面一样说的崩溃。其中分swap partition和swap file，区别就是swap file更灵活，毕竟不用分区。</p>
+<h3 id="创建swap-file"><a href="#创建swap-file" class="headerlink" title="创建swap file"></a>创建swap file</h3><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#创建swapfile</span><br><span class="line">sudo fallocate -l 1G /swapfile</span><br><span class="line"></span><br><span class="line">#权限</span><br><span class="line">sudo chmod 600 /swapfile</span><br><span class="line"></span><br><span class="line">#格式化</span><br><span class="line">sudo mkswap /swapfile</span><br><span class="line"></span><br><span class="line">#启用交换</span><br><span class="line">sudo swapon /swapfile</span><br><span class="line"></span><br><span class="line">#设置永久性</span><br><span class="line">vim /etc/fstab</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="文件中添加"><a href="#文件中添加" class="headerlink" title="文件中添加"></a>文件中添加</h3><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/swapfile swap swap defaults 0 0</span><br></pre></td></tr></tbody></table></figure>
+
+<h3 id="最后可以检查下状态"><a href="#最后可以检查下状态" class="headerlink" title="最后可以检查下状态"></a>最后可以检查下状态</h3><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo free -h</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="设置swappiness"><a href="#设置swappiness" class="headerlink" title="设置swappiness"></a>设置swappiness</h3><p>   swappiness就是定义swap空间使用频率的</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#查看当前swappiness值</span><br><span class="line">cat /proc/sys/vm/swappiness</span><br><span class="line"></span><br><span class="line">#更改swappiness值</span><br><span class="line">vim /etc/sysctl.conf</span><br></pre></td></tr></tbody></table></figure>
+<p>   里面加上一句</p>
+<figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vm.swappiness=10</span><br></pre></td></tr></tbody></table></figure>
+<p>   大功告成</p>
+<p>   以上关于swap的内容全部参照下面链接，老哥讲的清晰明了。<br>   <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=0mgefj9ibRE">https://www.youtube.com/watch?v=0mgefj9ibRE</a></p>
 
                 </article>
                 <ul class="tags-postTags">
@@ -169,11 +181,11 @@
     
     <nav id="gobottom" class="pagination">
         
-        <a class="prev-post" title="搭建个人网站(1)" href="/2021/05/03/%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%991/">
-            ← 搭建个人网站(1)
-        </a>
-        
         <span class="prev-next-post">·</span>
+        
+        <a class="next-post" title="搭建个人网站(1)" href="/2021/05/03/%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%991/">
+            搭建个人网站(1) →
+        </a>
         
     </nav>
 
@@ -198,7 +210,7 @@
         </a>
     </div>
     <div class="toc-main">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#2021%E5%B9%B44%E6%9C%8825%E6%97%A5%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%88%90%E5%8A%9F"><span class="toc-text">2021年4月25日博客搭建成功</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97"><span class="toc-text">更新日志</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%AE%E6%A0%87"><span class="toc-text">目标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#wordpress%E5%AE%89%E8%A3%85%E5%92%8C%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%B0%83%E4%BC%98"><span class="toc-text">wordpress安装和服务器调优</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BAswap-file"><span class="toc-text">创建swap file</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E4%B8%AD%E6%B7%BB%E5%8A%A0"><span class="toc-text">文件中添加</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E5%90%8E%E5%8F%AF%E4%BB%A5%E6%A3%80%E6%9F%A5%E4%B8%8B%E7%8A%B6%E6%80%81"><span class="toc-text">最后可以检查下状态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AEswappiness"><span class="toc-text">设置swappiness</span></a></li></ol></li></ol>
     </div>
 </div>
 
@@ -361,7 +373,7 @@
 			<a href="/" title="Jiao的博客">Jiao的博客 © 2021</a>
 			
 				
-			        <span hidden="true" id="/2021/04/25/%E6%AC%A2%E8%BF%8E%E6%9D%A5%E5%88%B0Jiao%E7%9A%84%E5%8D%9A%E5%AE%A2/" class="leancloud-visitors" data-flag-title="欢迎来到Jiao的博客">
+			        <span hidden="true" id="/2021/05/09/%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E7%BD%91%E7%AB%992/" class="leancloud-visitors" data-flag-title="搭建个人网站(2)">
 			            <span>阅读量 </span>
 			            <span class="leancloud-visitors-count">0</span>
 			        </span>
