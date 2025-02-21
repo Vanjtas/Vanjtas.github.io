@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>技术支持中心</title>
+	<title>应用支持中心</title>
 	<style>
 		body {
 			font-family: 'Helvetica Neue', Arial, sans-serif;
@@ -16,83 +16,83 @@
 		}
 
 		header {
-			border-bottom: 1px solid #eee;
-			padding-bottom: 15px;
-			margin-bottom: 20px;
 			text-align: center;
+			padding-bottom: 20px;
+			margin-bottom: 30px;
+			border-bottom: 1px solid #eee;
 		}
 
 		h1 {
 			color: #2c3e50;
 		}
 
-		h2 {
-			margin-top: 25px;
-			color: #3498db;
-		}
-
-		.app-selector {
-			background-color: #f7f7f7;
-			padding: 10px;
-			border-radius: 5px;
-			margin-bottom: 20px;
-			text-align: center;
-		}
-
-		.app-selector select {
-			padding: 8px 15px;
-			border-radius: 4px;
-			border: 1px solid #ddd;
-			font-size: 15px;
-		}
-
-		.app-section {
-			margin-bottom: 30px;
-		}
-
-		.app-header {
+		.app-container {
 			display: flex;
-			align-items: center;
-			margin-bottom: 15px;
+			justify-content: center;
+			flex-wrap: wrap;
+			gap: 20px;
+			margin-bottom: 40px;
+		}
+
+		.app-card {
+			border: 1px solid #eee;
+			border-radius: 10px;
+			padding: 20px;
+			width: 300px;
+			text-align: center;
+			transition: transform 0.2s, box-shadow 0.2s;
+		}
+
+		.app-card:hover {
+			transform: translateY(-5px);
+			box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 		}
 
 		.app-icon {
-			width: 50px;
-			height: 50px;
-			background-color: #f1f1f1;
-			border-radius: 10px;
-			margin-right: 15px;
+			width: 80px;
+			height: 80px;
+			margin: 0 auto 15px;
+			border-radius: 15px;
+			overflow: hidden;
+		}
+
+		.app-icon img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+
+		.app-links {
+			display: flex;
+			flex-direction: column;
+			margin-top: 15px;
+		}
+
+		.section-title {
+			font-size: 16px;
+			color: #7f8c8d;
+			margin: 15px 0 10px;
+		}
+
+		.language-links {
 			display: flex;
 			justify-content: center;
-			align-items: center;
-			font-size: 20px;
+			gap: 10px;
+		}
+
+		a {
 			color: #3498db;
+			text-decoration: none;
+			padding: 5px 10px;
 		}
 
-		.app-info h3 {
-			margin: 0 0 5px 0;
-			color: #2c3e50;
-		}
-
-		.question {
-			background-color: #f9f9f9;
-			padding: 12px;
-			border-radius: 5px;
-			margin-bottom: 15px;
-		}
-
-		.email-support {
-			text-align: center;
-			margin: 25px 0;
-			padding: 15px;
-			background-color: #f0f8ff;
-			border-radius: 5px;
-			font-size: 16px;
+		a:hover {
+			text-decoration: underline;
 		}
 
 		footer {
 			margin-top: 40px;
-			padding-top: 15px;
+			padding-top: 20px;
 			border-top: 1px solid #eee;
 			text-align: center;
 			font-size: 0.9em;
@@ -103,67 +103,68 @@
 
 <body>
 	<header>
-		<h1>技术支持中心</h1>
+		<h1>应用支持中心</h1>
 	</header>
 
-	<div class="app-selector">
-		<label for="app-select">选择应用：</label>
-		<select id="app-select" onchange="showAppSection(this.value)">
-			<option value="eijumeter" selected>永住メーター</option>
-			<!-- 未来可以添加更多应用 -->
-		</select>
-	</div>
-
 	<main>
-		<section id="eijumeter" class="app-section">
-			<div class="app-header">
-				<div class="app-icon"><img src="images/visa-predictor.png" alt="永住メーター图标"
-						style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;"></div>
-				<div class="app-info">
-					<h3>永住メーター</h3>
-					<p>日本永住权申请进度计算工具</p>
+		<div class="app-container">
+			<div class="app-card">
+				<div class="app-icon">
+					<img src="images/visa-predictor.png" alt="永住メーター图标">
+				</div>
+				<h2>永住メーター</h2>
+				<p>日本永住权申请进度计算工具</p>
+
+				<div class="app-links">
+					<p class="section-title">技术支持 / サポート / Support</p>
+					<div class="language-links">
+						<a href="visa-predictor/support/zh.html">中文</a>
+						<a href="visa-predictor/support/ja.html">日本語</a>
+						<a href="visa-predictor/support/en.html">English</a>
+					</div>
+
+					<p class="section-title">隐私政策 / プライバシーポリシー / Privacy Policy</p>
+					<div class="language-links">
+						<a href="visa-predictor/privacy/zh.html">中文</a>
+						<a href="visa-predictor/privacy/ja.html">日本語</a>
+						<a href="visa-predictor/privacy/en.html">English</a>
+					</div>
 				</div>
 			</div>
 
-			<h2>常见问题</h2>
-
-			<div class="question">
-				<h3>这个应用是做什么的？</h3>
-				<p>永住メーター是一个帮助在日本的外国人计算永住权申请进度的工具。通过输入您的在留资格、在日时间等信息，可以估算您的永住申请条件达成情况。</p>
-			</div>
-
-			<div class="question">
-				<h3>永住メーター的计算结果准确吗？</h3>
-				<p>本应用基于公开的永住权申请指南进行设计，但仅供参考，不能替代专业的法律建议。永住权申请最终审核结果由入国管理局决定。</p>
-			</div>
-
-			<div class="question">
-				<h3>应用无法启动或出现问题</h3>
-				<p>请尝试清除应用缓存或重新安装应用。如果问题仍然存在，请通过下方邮箱联系我们。</p>
-			</div>
-		</section>
-
-		<!-- 未来可以添加更多应用的section -->
-
-		<div class="email-support">
-			<h3>技术支持邮箱</h3>
-			<p><a href="mailto:visapredictor.help@gmail.com">visapredictor.help@gmail.com</a></p>
+			<!-- 未来可以添加更多应用卡片 -->
+			<!-- 
+            <div class="app-card">
+                <div class="app-icon">
+                    <img src="images/future-app.png" alt="未来应用图标">
+                </div>
+                <h2>未来应用</h2>
+                <p>应用描述</p>
+                
+                <div class="app-links">
+                    <p class="section-title">技术支持</p>
+                    <div class="language-links">
+                        <a href="future-app/support/zh.html">中文</a>
+                        <a href="future-app/support/ja.html">日本語</a>
+                        <a href="future-app/support/en.html">English</a>
+                    </div>
+                    
+                    <p class="section-title">隐私政策</p>
+                    <div class="language-links">
+                        <a href="future-app/privacy/zh.html">中文</a>
+                        <a href="future-app/privacy/ja.html">日本語</a>
+                        <a href="future-app/privacy/en.html">English</a>
+                    </div>
+                </div>
+            </div>
+            -->
 		</div>
 	</main>
 
 	<footer>
-		<p>© 2025 技术支持中心</p>
+		<p>© 2025 应用支持中心</p>
+		<p>联系我们: <a href="mailto:visapredictor.help@gmail.com">visapredictor.help@gmail.com</a></p>
 	</footer>
-
-	<script>
-		// 应用选择器功能
-		function showAppSection(appId) {
-			document.querySelectorAll('.app-section').forEach(section => {
-				section.style.display = 'none';
-			});
-			document.getElementById(appId).style.display = 'block';
-		}
-	</script>
 </body>
 
 </html>
